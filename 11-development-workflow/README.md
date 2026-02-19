@@ -59,4 +59,4 @@ It leverages a few publicly available actions from the marketplace:
 3) https://github.com/marketplace/actions/build-and-push-docker-images (builds and pushes the images)
 4) https://github.com/marketplace/actions/aqua-security-trivy (scans the images for vulnerabilities)
 
-If you want to build out more advanced CI workflows I recommend looking at Bret Fisher's `Automation with Docker for CI/CD Workflows` repo (https://github.com/BretFisher/docker-cicd-automation). It has many great examples of the types of things you might want to do with Docker in a CI/CD pipeline!
+If you want to build out more advanced CI workflows I recommend looking at Bret Fisher's `Automation with Docker for CI/CD Workflows` repo (https://github.com/BretFisher/docker-cicd-automation). It has many great examples of the types of things you might want to do with Docker in a CI/CD pipeline!# my-scratch-image

@@ -8,6 +8,9 @@ dns.setDefaultResultOrder('verbatim');
 export default defineConfig({
   plugins: [react()],
   server: {
+    watch: {
+      usePolling: true
+    },
     proxy: {
       '/api/golang': {
         target: 'http://api-golang:8080',

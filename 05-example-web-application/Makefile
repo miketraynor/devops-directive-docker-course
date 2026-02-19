@@ -9,6 +9,8 @@ run-postgres:
 		-p 5432:5432 \
 		postgres:15.1-alpine
 
+#$env:DATABASE_URL="postgres://postgres:foobarbaz@localhost:5432/postgres"
+
 .PHONY: run-api-node
 run-api-node:
 	@echo Starting node api
@@ -19,7 +21,7 @@ run-api-node:
 .PHONY: run-api-golang
 run-api-golang:
 	@echo Starting golang api
-	cd api-golang && \
+	cd api-golang 
 		DATABASE_URL=${DATABASE_URL} \
 		go run main.go
 

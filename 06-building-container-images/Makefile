@@ -1,6 +1,8 @@
+#$env:DOCKER_BUILDKIT=1
+
 .PHONY: build-sample
 build-sample:
-	DOCKER_BUILDKIT=1 docker build \
+	docker build \
 		--build-arg BASE_IMAGE_TAG=19.3 \
 		--secret id=secret.txt,src=local-secret.txt \
 		-t sample \
@@ -36,7 +38,7 @@ run-sample-entrypoint-cmd: build-sample
 
 	@echo "##############################"
 	@echo "Overriden entrypoint with arguments (CMD is ignored):"
-	docker run --entrypoint echo sample "Hey Team 👋 (Overriden entrypoint + arguments)"
+	docker run --entrypoint echo sample "Hey Team 👋 (Overriden entrypointq + argumentsq)"
 
 define ENTRYPOINT_CMD_DESCRIPTION
 

@@ -32,6 +32,7 @@ docker-build-all:
 	docker build -t api-golang -f ${DOCKERFILE_DIR}/api-golang/Dockerfile.6 ${DOCKERCONTEXT_DIR}/api-golang/
 
 DATABASE_URL:=postgres://postgres:foobarbaz@db:5432/postgres
+#export DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
 
 .PHONY: docker-run-all
 docker-run-all:
@@ -59,6 +60,7 @@ docker-run-all:
 		-e DATABASE_URL=${DATABASE_URL} \
 		-p 3000:3000 \
 		--restart unless-stopped \
+		--link=db \
 		api-node
 
 	docker run -d \
@@ -67,6 +69,7 @@ docker-run-all:
 		-e DATABASE_URL=${DATABASE_URL} \
 		-p 8080:8080 \
 		--restart unless-stopped \
+		--link=db \
 		api-golang
 
 	docker run -d \
@@ -75,13 +78,17 @@ docker-run-all:
 		-v ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js \
 		-p 5173:5173 \
 		--restart unless-stopped \
+		--link=api-node \
+		--link=api-golang \
 		client-react-vite
 
 	docker run -d \
 		--name client-react-nginx \
 		--network my-network \
-		-p 80:8080 \
+		-p 8081:8080 \
 		--restart unless-stopped \
+		--link=api-node \
+		--link=api-golang \
 		client-react-ngnix
 
 .PHONY: docker-stop

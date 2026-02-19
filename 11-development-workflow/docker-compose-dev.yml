@@ -28,7 +28,7 @@ services:
     networks:
       - frontend
     ports:
-      - 80:8080
+      - 8081:8080
     restart: unless-stopped
   api-node:
     image: api-node
@@ -47,6 +47,7 @@ services:
       - db
     environment:
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+      - CHOKIDAR_USEPOLLING=true  
     networks:
       - frontend
       - backend  
